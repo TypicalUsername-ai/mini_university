@@ -3,12 +3,17 @@ import ReactDOM from 'react-dom';
 import reportWebVitals from './reportWebVitals';
 
 import App from './App';
-import 'index.css';
+import './index.css';
 
 ReactDOM.render(
   <App />,
   document.getElementById('root')
 );
+
+// import { createRoot } from 'react-dom/client';
+// const container = document.getElementById('app');
+// createRoot(container!) //if you use TypeScript
+// root.render(<App tab="home" />);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
