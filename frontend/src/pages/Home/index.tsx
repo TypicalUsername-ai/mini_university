@@ -42,32 +42,41 @@ export function HomePage() {
   return (
     <div className="App">
       <header className='App-header'> <p>Mateusz's Databases 1 final project</p> </header>
+      <Link to="Search" >Search</Link>
+      <Link to="add/lecturer">add lecturer</Link>
+      <Link to="add/student">add student</Link>
+      <Link to="add/course">add course</Link>
+      <Link to="grade">grade student</Link>
       <div>
         <table>
-          <tr>
-            <th>Course code</th>
-            <th>Course name</th>
-            <th>lecturer</th>
-            <th>institution</th>
-            <th>place</th>
-            <th>date</th>
-            <th>participant</th>
-            <th>grade</th>
-          </tr>
-          {data.map(
-            element => (
-              <tr>
-                <th>{element.code}</th>
-                <th>{element.name}</th>
-                <th>{element.lecturer}</th>
-                <th>{element.institution}</th>
-                <th>{element.place}</th>
-                <th>{element.date.toUTCString()}</th>
-                <th>{element.participant}</th>
-                <th>{element.grade}</th>
-              </tr>
-            )
-          )}
+          <thead>
+            <tr>
+              <th>Course code</th>
+              <th>Course name</th>
+              <th>lecturer</th>
+              <th>institution</th>
+              <th>place</th>
+              <th>date</th>
+              <th>participant</th>
+              <th>grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map(
+              element => (
+                <tr>
+                  <th>{element.code}</th>
+                  <th>{element.name}</th>
+                  <th>{element.lecturer}</th>
+                  <th>{element.institution}</th>
+                  <th>{element.place}</th>
+                  <th>{element.date.toUTCString()}</th>
+                  <th>{element.participant}</th>
+                  <th>{element.grade}</th>
+                </tr>
+              )
+            )}
+          </tbody>
         </table>
       </div>
     </div>
