@@ -1,7 +1,7 @@
 # Todo list
 
-- [ ] show all data
-- [ ] filter by
+- [x] show all data
+- [x] filter by
   - course
   - user
   - professor
@@ -9,8 +9,8 @@
   - new course
   - new professor
   - new participant
-  - new institution
-- [ ] edit
+  - new institution //scrap OR merge with course
+- [ ] edit //scrap probably?
   - course
   - participant
   - grade
