@@ -43,6 +43,21 @@ app.get("/api/tables", async (req, res) => {
     }
 })
 
+app.get("/api/columns", async (req, res) => {
+    if(!req.query.table){
+        res.status(400).send({error: "table query param needs to be present"});
+    }
+    try {
+        const db_data = await (await db).query(
+            `DESCRIBE ${req.query.table}`
+        );
+        res.send(db_data);
+    } catch (error) {
+        console.warn("error", error);
+        res.status(500).send("internal server error");
+    }
+})
+
 app.get("/api/lecturers", async (req, res) => {
     try {
         const db_data = await (await db).query(
@@ -122,7 +137,23 @@ app.get("/api/positions", async (req, res) => {
     }
 })
 
-
+app.get("/api/search", async (req, res) => {
+    if(!req.query.table || !req.query.key || !req.query.value) {
+        res.status(400).send({error: `"table" "key" and "value" query parameters are required`});
+    }else{
+        try {
+            var querystring = `SELECT * FROM ${req.query.table} WHERE ${req.query.key} = ${req.query.value}`
+            if(req.query.like == "true"){
+                querystring = `SELECT * FROM ${req.query.table} WHERE ${req.query.key} LIKE '%${req.query.value}%'`
+            }
+            console.info({query: querystring});
+            const db_data = await (await db).query(querystring);
+            res.send(db_data);
+        } catch (error) {
+            res.status(401).send({error: error});
+        }
+    }
+})
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on ${PORT}`);
