@@ -58,29 +58,29 @@ export function SearchPage() {
 
     return (
         <div className="App">
-            <Link to="/">go Home</Link>
+            <Link className='link' to="/">go Home</Link>
             this is the search page
             <div>
-                <select name="table" onChange={(e) => {setTable(tables.find(tb => tb.name === e.target.value))}}>
+                <select className="text" name="table" onChange={(e) => {setTable(tables.find(tb => tb.name === e.target.value))}}>
                     {tables.map(
                         tb => <option value={tb.name.toString()}>{tb.name}</option>
                     )}
                 </select>
-                <select name="column" onChange={(e) => {setColumn(table?.columns.find(c => c.name === e.target.value))}}>
+                <select className="text" name="column" onChange={(e) => {setColumn(table?.columns.find(c => c.name === e.target.value))}}>
                     {tables.find( (tb) => tb.name === table?.name)?.columns.map(
                         c => <option value={c.name.toString()}>{c.name} ({c.type})</option>
                     )}
                 </select>
-                <input onChange={(e) => setVal(e.target.value.toString())} placeholder={`search phrase (${column?.type})`}></input>
-                <button onClick={() => {tableLookup(table ? table.name : tables[0].name, column ? column : tables[0].columns[0], val ?  val : "")}}>Search</button>
-                <button onClick={() => {tableLookup(table ? table.name : tables[0].name, table ? table.columns[0] : tables[0].columns[0], "'' OR 1")}}>Show all</button>
+                <input className="text" onChange={(e) => setVal(e.target.value.toString())} placeholder={`search phrase (${column?.type})`}></input>
+                <button className="text" onClick={() => {tableLookup(table ? table.name : tables[0].name, column ? column : tables[0].columns[0], val ?  val : "")}}>Search</button>
+                <button className="text" onClick={() => {tableLookup(table ? table.name : tables[0].name, table ? table.columns[0] : tables[0].columns[0], "'' OR 1")}}>Show all</button>
             </div>
             {lookup.length > 0 ? 
             <div>
                 Search results
                 <table>
                     <thead>
-                        <tr>
+                        <tr className="trow">
                         {Object.keys(lookup[0]).map(
                             key => <th>{key.toString()}</th>
                         )}
@@ -89,8 +89,8 @@ export function SearchPage() {
                     <tbody>
                             {lookup.map(
                                 data => 
-                                <tr>
-                                    {Object.values(data).map(val => <th>{val}</th>)}
+                                <tr className="trow">
+                                    {Object.values(data).map(val => <th className="text">{val}</th>)}
                                 </tr>
                             )}
                     </tbody>

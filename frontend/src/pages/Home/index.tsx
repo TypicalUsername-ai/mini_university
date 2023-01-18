@@ -42,15 +42,15 @@ export function HomePage() {
   return (
     <div className="App">
       <header className='App-header'> <p>Mateusz's Databases 1 final project</p> </header>
-      <Link to="Search" >Search</Link>
-      <Link to="add/lecturer">add lecturer</Link>
-      <Link to="add/student">add student</Link>
-      <Link to="add/course">add course</Link>
-      <Link to="grade">grade student</Link>
+      <Link className="link" to="Search" >Search</Link>
+      <Link className="link" to="add/lecturer">add lecturer</Link>
+      <Link className="link" to="add/student">add student</Link>
+      <Link className="link" to="add/course">add course</Link>
+      <Link className="link" to="grade">grade student</Link>
       <div>
         <table>
           <thead>
-            <tr>
+            <tr className='trow'>
               <th>Course code</th>
               <th>Course name</th>
               <th>lecturer</th>
@@ -64,15 +64,15 @@ export function HomePage() {
           <tbody>
             {data.map(
               element => (
-                <tr>
-                  <th>{element.code}</th>
-                  <th>{element.name}</th>
-                  <th>{element.lecturer}</th>
-                  <th>{element.institution}</th>
-                  <th>{element.place}</th>
-                  <th>{element.date.toUTCString()}</th>
-                  <th>{element.participant}</th>
-                  <th>{element.grade}</th>
+                <tr className='trow'>
+                  <th className='text' >{element.code}</th>
+                  <th className='text' >{element.name}</th>
+                  <th className='text' >{element.lecturer}</th>
+                  <th className='text' >{element.institution}</th>
+                  <th className='text' >{element.place}</th>
+                  <th className='text' >{element.date.toUTCString()}</th>
+                  <th className='text' >{element.participant}</th>
+                  <th className='text' >{element.grade}</th>
                 </tr>
               )
             )}

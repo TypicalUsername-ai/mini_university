@@ -50,24 +50,24 @@ export function AddLecturer() {
     
     return(
         <div className="App">
-            <Link to="/">go Home</Link>
+            <Link className="link" to="/">go Home</Link>
             <div>
-                <input placeholder="title" onChange={(e) => {
+                <input className='text' placeholder="title" onChange={(e) => {
                     var val = lecturer;
                     val.title = e.target.value
                     setLecturer(val);
                 }}/>
-                <input placeholder="first name" onChange={(e) => {
+                <input className='text' placeholder="first name" onChange={(e) => {
                     var val = lecturer;
                     val.initial_name = e.target.value
                     setLecturer(val);
                 }}/>
-                <input placeholder="last name" onChange={(e) => {
+                <input className='text' placeholder="last name" onChange={(e) => {
                     var val = lecturer;
                     val.family_name = e.target.value
                     setLecturer(val);
                 }}/>
-                <select name="positions" onChange={(e) => {
+                <select className='text' name="positions" onChange={(e) => {
                     var val = lecturer;
                     val.id_institutions = Number.parseInt(e.target.value);
                     setLecturer(val);
@@ -76,7 +76,7 @@ export function AddLecturer() {
                         i => <option value={i.id_institutions}>{i.institution_name}</option>
                     )}
                 </select>
-                <button onClick={() => postLecturer()}> add </button>
+                <button className='text' onClick={() => postLecturer()}> add </button>
             </div>
         </div>
     );

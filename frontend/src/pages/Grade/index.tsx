@@ -68,20 +68,20 @@ export function AddGrade() {
 
     return(
         <div className="App">
-            <Link to="/">go Home</Link>
+            <Link className="link" to="/">go Home</Link>
             <p>Select a student and a couse to add or update a grade</p>
-            <select name="students" onChange={(e) => {setSID(Number.parseInt(e.target.value))}}>
+            <select className="text" name="students" onChange={(e) => {setSID(Number.parseInt(e.target.value))}}>
                 {students.map(
                     st => <option value={st.id_participants}>{st.initial_name} {st.family_name}</option>
                 )}
             </select>
-            <select onChange={(e) => {setCID(Number.parseInt(e.target.value))}}>
+            <select className="text" onChange={(e) => {setCID(Number.parseInt(e.target.value))}}>
                 {courses.map(
                     c => <option value={c.id_courses}>{c.course_name} ({c.course_code})</option>
                 )}
             </select>
-            <input placeholder="grade (e.g. 5.0 or pass" onChange={(e) => {setGrade(e.target.value.toString())}}/>
-            <button onClick={() => postGrade()}>Confirm</button>
+            <input className="text" placeholder="grade (e.g. 5.0 or pass" onChange={(e) => {setGrade(e.target.value.toString())}}/>
+            <button className="text" onClick={() => postGrade()}>Confirm</button>
         </div>
     );
 }

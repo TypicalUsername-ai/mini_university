@@ -46,19 +46,19 @@ export function AddStudent() {
 
     return(
         <div className="App">
-            <Link to="/">go Home</Link>
+            <Link className="link" to="/">go Home</Link>
             <div>
-                <input placeholder="first name" onChange={(e) => {
+                <input className="text" placeholder="first name" onChange={(e) => {
                     var val = student;
                     val.initial_name = e.target.value
                     setStudent(val);
                 }}/>
-                <input placeholder="last name" onChange={(e) => {
+                <input className="text" placeholder="last name" onChange={(e) => {
                     var val = student;
                     val.family_name = e.target.value
                     setStudent(val);
                 }}/>
-                <select name="positions" onChange={(e) => {
+                <select className="text" name="positions" onChange={(e) => {
                     var val = student;
                     val.id_positions = Number.parseInt(e.target.value);
                     setStudent(val);
@@ -67,7 +67,7 @@ export function AddStudent() {
                         p => <option value={p.id_positions}>{p.position}</option>
                     )}
                 </select>
-                <button onClick={() => postStudent()}> add </button>
+                <button className="text" onClick={() => postStudent()}> add </button>
             </div>
         </div>
     );

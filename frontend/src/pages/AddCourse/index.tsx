@@ -54,29 +54,29 @@ export function AddCourse() {
 
     return(
         <div className="App">
-            <Link to="/">go Home</Link>
+            <Link className="link" to="/">go Home</Link>
             <div>
-                <input placeholder="course code" onChange={(a) => {
+                <input className="text" placeholder="course code" onChange={(a) => {
                     var prev: course = course;
                     course.course_code = a.target.value;
                     setCourse(prev)
                 }}/>
-                <input placeholder="name" onChange={(a) => {
+                <input className="text" placeholder="name" onChange={(a) => {
                     var prev: course = course;
                     course.course_name = a.target.value;
                     setCourse(prev)
                 }}/>
-                <input placeholder="place" onChange={(a) => {
+                <input className="text" placeholder="place" onChange={(a) => {
                     var prev: course = course;
                     course.place = a.target.value;
                     setCourse(prev)
                 }}/>
-                <input type="date" onChange={(a) => {
+                <input className="text" type="date" onChange={(a) => {
                     var prev: course = course;
                     course.course_date = new Date(a.target.value);
                     setCourse(prev)
                 }}/>
-                <select name="lecturer" onChange={(a) => {
+                <select className="text" name="lecturer" onChange={(a) => {
                     var prev: course = course;
                     course.id_lecturers = Number.parseInt(a.target.value);
                     setCourse(prev)
@@ -85,7 +85,7 @@ export function AddCourse() {
                         l => <option value={l.id_lecturers}>{l.title} {l.initial_name.charAt(0)}. {l.family_name}</option>
                     )}
                 </select>
-                <button onClick={ () => {postCourse()}}> add course </button>
+                <button className="text" onClick={ () => {postCourse()}}> add course </button>
             </div>
         </div>
     );
