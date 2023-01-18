@@ -101,6 +101,26 @@ app.get("/api/grades", async (req, res) => {
     }
 })
 
+app.post("/api/grades", async (req,res) => {
+    if(!req.query.student_id || !req.query.course_id || !req.query.grade){
+        res.status(401).send({error: "query parameters student_id, course_id and grade are required"})
+    }
+    else {
+        try{
+            var querystring = `INSERT INTO course_grading(id_courses, id_participants, grade) VALUES (${req.query.course_id}, ${req.query.student_id}, ${req.query.grade})`
+            if(req.query.update==="true"){
+                querystring = `UPDATE course_grading SET grade = ${req.query.grade} WHERE id_courses = ${req.query.course_id} AND id_participants = ${req.query.student_id}`
+            }
+            console.info({query: querystring});
+            const db_res = await (await db).query(querystring);
+            res.send({status: "success", info: db_res});
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({error: error});
+        }
+    }
+});
+
 app.get("/api/courses", async (req, res) => {
     try {
         const db_data = await (await db).query(
@@ -112,6 +132,23 @@ app.get("/api/courses", async (req, res) => {
         res.status(500).send("internal server error");
     }
 })
+
+app.post("/api/course", async (req, res) => {
+    const q = req.query;
+    if(!q.id || !q.code || !q.name || !q.place || !q.date || !q.lecturer){
+        res.status(401).send({error: "not all required parameters valid/present"});
+    } else {
+        try {
+            var querystring = `INSERT INTO courses(id_courses, course_code, course_name, place, course_date, id_lecturers) VALUES (${q.id}, '${q.code}', '${q.name}', '${q.place}', ${q.date}, ${q.lecturer})`
+            const db_res = await (await db).query(querystring);
+            res.send({status: "ok"});
+            console.info(db_res)
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({error: error});
+        }
+    }
+});
 
 app.get("/api/institutions", async (req, res) => {
     try {
