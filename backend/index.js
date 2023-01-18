@@ -70,6 +70,23 @@ app.get("/api/lecturers", async (req, res) => {
     }
 })
 
+app.post("/api/lecturers", async (req, res) => {
+    const q = req.query;
+    if(!q.id || !q.title || !q.name || !q.lname || !q.institution) {
+        res.status(401).send({error: "missing required query params"});
+    } else {
+        try {
+            var querystring = `INSERT INTO lecturers(id_lecturers, title, initial_name, family_name, id_institutions) VALUES (${q.id}, '${q.title}', '${q.name}', '${q.lname}', ${q.institution})`
+            const db_res = await (await db).query(querystring);
+            console.log(querystring, db_res);
+            res.send({status: "ok"})
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({error: "internal"})
+        }
+    }
+})
+
 app.get("/api/participants", async (req, res) => {
     try {
         const db_data = await (await db).query(
@@ -79,6 +96,23 @@ app.get("/api/participants", async (req, res) => {
     } catch (error) {
         console.warn("error", error);
         res.status(500).send("internal server error");
+    }
+})
+
+app.post("/api/participants", async (req, res) => {
+    const q = req.query;
+    if(!q.id || !q.name || !q.lname || !q.position) {
+        res.status(401).send({error: "missing required query params"});
+    } else {
+        try {
+            var querystring = `INSERT INTO participants(id_participants, initial_name, family_name, id_positions) VALUES (${q.id}, '${q.name}', '${q.lname}', ${q.position})`
+            const db_res = await (await db).query(querystring);
+            console.log(querystring, db_res);
+            res.send({status: "ok"})
+        } catch (error) {
+            console.error(error);
+            res.status(500).send({error: "internal"})
+        }
     }
 })
 
